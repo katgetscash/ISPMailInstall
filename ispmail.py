@@ -413,15 +413,14 @@ def apache_configs():
    commands2 = ["a2ensite " + hostname +"-http.conf",
    "a2dissite 000-default.conf",
    "systemctl reload apache2",
-   "certbot certonly -n --webroot --webroot-path /var/www/" + hostname+ " -d "+ hostname + " --agree-tos --email " + email,
+   "certbot certonly -n --webroot --webroot-path /var/www/" + hostname+ " -d "+ hostname + " -d "+ bf4-srv.tk + " --agree-tos --email " + email,
    ]
    files2 = [(http_conf2_file, http_conf2), 
    (https_conf_file, https_conf),]
    commands3 = ["a2enmod ssl",
    "a2enmod proxy_http",
    "a2enmod rewrite",
-   "a2ensite " + hostname +"-https"]
-   files3 = [(letsencrypt_ini_file, letsencrypt_ini)]
+   "a2ensite " + hostname +"-http
    commands4 = ["chmod +x /etc/letsencrypt/renewal-hooks/deploy/reloadall.sh"]
 
    for command in commands1:
